@@ -25,8 +25,8 @@ venv:
 
 # Requires that tests in a directory have an empty `__init__.py` file.
 # See https://stackoverflow.com/a/43733357
-test:
-	$(ACTIVATE_CHECK) && python3 -m unittest
+execute-test:
+	$(ACTIVATE_CHECK) && python3 -m unittest -v
 
 clean:
 	rm -rf venv
