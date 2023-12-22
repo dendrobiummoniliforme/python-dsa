@@ -1,6 +1,6 @@
 from QuickFind_UnionFind import *
 
-input = [[0,2], [1,2]]
+input = [[0,2], [1,4]]
 quick_find = QuickFind_UnionFind(3)
 
 for item in input:
