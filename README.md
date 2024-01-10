@@ -12,4 +12,4 @@ A repo. dedicated to implementations of common algorithms in Python.
 
 ## Run Tests
 
-1. `make TEST`
+1. `make TESTS`
