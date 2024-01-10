@@ -1,5 +1,5 @@
 import unittest
-from UnionFind.QuickUnion_UnionFind import QuickUnion_UnionFind
+from src.UnionFind.QuickUnion_UnionFind import QuickUnion_UnionFind
 
 class TestQuickUnion(unittest.TestCase):
     def setUp(self):

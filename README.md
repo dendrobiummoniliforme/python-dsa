@@ -1,4 +1,4 @@
-## Python Algorithms
+# Python Algorithms
 
 A repo. dedicated to implementations of common algorithms in Python.
 
@@ -8,8 +8,8 @@ A repo. dedicated to implementations of common algorithms in Python.
 
 ## Run Python3 Code
 
-1. `make execute EXECUTE="<path_to_file.py>`
+1. `make EXECUTE PATH="<path_to_file.py>`
 
 ## Run Tests
 
-1. `make test`
+1. `make TEST`
