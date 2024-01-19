@@ -7,9 +7,12 @@ class WeightedQuickUnion_UnionFind:
 
     def __init__(self, n: int):
         self.id = list(range(n)) # Generate a list of ids to populate from 0 .. N.
+        self.size = list(range(n)) # Generate a size list to populate of length <= N.
+        for i in range(n):
+           self.size[i] = 1 # All roots are trees of size 1 before we union any of them.
 
     def __repr__(self):
-        return f"<WeightedQuickUnion_UnionFind id:{self.id}>"
+        return f"<WeightedQuickUnion_UnionFind id, size:{self.id, self.size}>"
     
     def _check_indicies(func):
         """ 
