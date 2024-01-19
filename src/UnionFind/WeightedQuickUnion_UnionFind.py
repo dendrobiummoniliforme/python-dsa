@@ -1,8 +1,6 @@
-# Implementation of the lazy approach to union-find: quick-union.
-
 class WeightedQuickUnion_UnionFind:
     """ 
-        Implementation of the eager approach to union-find: quick-find. 
+        Implementation of the weighted approach to union-find: weighted quick-union. 
     """
     id = [] # Our list of ids.
     size = [] # Our list of tree sizes.
@@ -25,21 +23,20 @@ class WeightedQuickUnion_UnionFind:
             return func(self, p, q)
         return wrapper
 
-    def _root(self, root_of_i: int):
+    def find(self, root_of_i: int):
         """ 
             Find root of given index, O(N).
         """
-        _root_of_i = root_of_i
-        while _root_of_i != self.id[_root_of_i]:
-            _root_of_i = self.id[_root_of_i]
-        return _root_of_i
+        while root_of_i != self.id[root_of_i]:
+            root_of_i = self.id[root_of_i]
+        return root_of_i
 
     @_check_indicies
     def connected(self, p: int, q: int):
         """ 
             Check if two roots are the same, O(N).
         """
-        return self._root(p) == self._root(q)
+        return self.find(p) == self.find(q)
     
     
     @_check_indicies
@@ -51,8 +48,8 @@ class WeightedQuickUnion_UnionFind:
             size of the current root's tree.
             Update the trees size to be itself plus the new tree.
         """
-        p_root = self._root(p)
-        q_root = self._root(q)
+        p_root = self.find(p)
+        q_root = self.find(q)
         if p_root == q_root:
             return
         if self.size[p_root] < self.size[q_root]:
