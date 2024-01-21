@@ -1,16 +1,18 @@
-
-
-class QuickUnion_UnionFind:
+class WeightedQuickUnion_UnionFind:
     """ 
-        Implementation of the lazy approach to union-find: quick-union.
+        Implementation of the weighted approach to union-find: weighted quick-union. 
     """
     id = [] # Our list of ids.
+    size = [] # Our list of tree sizes.
 
     def __init__(self, n: int):
         self.id = list(range(n)) # Generate a list of ids to populate from 0 .. N.
+        self.size = list(range(n)) # Generate a size list to populate of length <= N.
+        for i in range(n):
+           self.size[i] = 1 # All roots are trees of size 1 before we union any of them.
 
     def __repr__(self):
-        return f"<QuickUnion_UnionFind id:{self.id}>"
+        return f"<WeightedQuickUnion_UnionFind id, size:{self.id, self.size}>"
     
     def _check_indicies(func):
         """ 
@@ -27,7 +29,6 @@ class QuickUnion_UnionFind:
     def find(self, root_of_i: int):
         """ 
             Find root of given index, O(N).
-            Traverse tree until the given id matches the expected root.
         """
         while root_of_i != self.id[root_of_i]:
             root_of_i = self.id[root_of_i]
@@ -36,17 +37,28 @@ class QuickUnion_UnionFind:
     @_check_indicies
     def connected(self, p: int, q: int):
         """ 
-            Check if two roots are connected, O(N).
+            Check if two roots are the same, O(N).
         """
         return self.find(p) == self.find(q)
     
     
     @_check_indicies
     def union(self, p: int, q: int):
-        """
-            Transform p root to q root, O(1)
+        """ 
+            Transform p root to q root, O(1).
+            Weighted variant.
+            Set the tree to point in a certain direction dependent on the 
+            size of the current root's tree.
+            Update the trees size to be itself plus the new tree.
         """
         p_root = self.find(p)
         q_root = self.find(q)
-        self.id[p_root] = q_root 
+        if p_root == q_root:
+            return
+        if self.size[p_root] < self.size[q_root]:
+            self.id[p_root] = q_root
+            self.size[q_root] = self.size[q_root] + self.size[p_root]
+        else:
+            self.id[q_root] = p_root
+            self.size[p_root] = self.size[p_root] + self.size[q_root]
         
