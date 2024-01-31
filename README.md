@@ -1,6 +1,6 @@
-# Python Algorithms
+# Python Data Structures and Algorithms (DSA)
 
-A repo. dedicated to implementations of common algorithms in Python.
+A repo. dedicated to implementations of common data structures and algorithms in Python.
 
 ## Install
 
